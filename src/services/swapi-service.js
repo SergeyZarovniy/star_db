@@ -73,7 +73,8 @@ _transformPlanet (planet) {
       name:planet.name,
       population:planet.population,
       rotationPeriod:planet.rotation_period,
-      diameter:planet.diameter
+      diameter:planet.diameter,
+      terrain:planet.terrain
    }
 }
 
