@@ -4,9 +4,6 @@ import Header from '../header/header';
 import RandomPlanet from '../random-planet/random-planet';
 import ItemList from '../item-list/item-list';
 import PersonDetails from '../person-details/person-details';
-import Spinner from "../spinner/spinner";
-
-
 
 
 
@@ -29,7 +26,7 @@ render () {
   const planet = this.state.showRandomPlanet ? <RandomPlanet/> : null;
 
   return(
-    <div className='stardb-app'>
+    <div className='stardb-app col-md-12 col-sm-3 '>
         <Header/>
 
         {planet}
