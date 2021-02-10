@@ -54,7 +54,7 @@ _transformStarship = (starship) => {
    passengers:starship.passengers,
    cargoCapacity:starship.cargoCapacity
  }
-}
+};
 
 _transformPerson = (person) => {
   return {
@@ -64,7 +64,7 @@ _transformPerson = (person) => {
     birthYear:person.birthYear,
     eyeColor:person.eyeColor
   }
-}
+};
 
 
 _transformPlanet = (planet) => {
@@ -77,6 +77,5 @@ _transformPlanet = (planet) => {
       terrain:planet.terrain
    }
 }
-
-}
+};
 
