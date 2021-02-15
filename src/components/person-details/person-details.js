@@ -16,6 +16,12 @@ export default class PersonDetails extends Component {
     this.updatePerson();
   }
 
+  componentDidUpdate (prevProps) {
+if (this.props.personId !== prevProps.personId) {
+  this.updatePerson();
+}
+  }
+
   updatePerson () {
     const {personId} = this.props;
     if (!personId) {
@@ -55,7 +61,7 @@ const {id,name,gender,birthYear,eyeColor} = this.state.person;
             </li>
             <li className="list-group-item">
               <span className="term">Eye Color :</span>
-              <span>{eyeColor}</span>
+              <span> {eyeColor} </span>
             </li>
           </ul>
         </div>
