@@ -6,6 +6,7 @@ import ItemList from '../item-list/item-list';
 import PersonDetails from '../person-details/person-details';
 import ErrorIndicator from "../error-indicator/error-indicator";
 import PeoplePage from "../people-page/people-page";
+import ErrorButton from "../error-button/error-button";
 
 
 
@@ -34,15 +35,19 @@ render () {
         <Header/>
 
         {planet}
-
+        <div className="row mb2 button-row">
         <button 
             className="toggle-planet btn btn-warning btn-lg" 
             onClick={this.toggleRandomPlanet}>
             Toggle Random Planet
         </button>
+        <ErrorButton/>
+    </div>
+       <PeoplePage/>
+       <PeoplePage/>
        <PeoplePage/>
     </div>
-)
+);
 }
 }
 

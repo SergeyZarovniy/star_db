@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './person-details.css';
 
 import SwapiService from '../../services/swapi-service';
+import ErrorButton from '../error-button/error-button';
 
 export default class PersonDetails extends Component {
 
@@ -68,6 +69,7 @@ const {id,name,gender,birthYear,eyeColor,height} = this.state.person;
               <span> {height} cm</span>
             </li>
           </ul>
+          <ErrorButton/>
         </div>
       </div>
     )
