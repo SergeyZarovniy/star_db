@@ -4,6 +4,8 @@ import Header from '../header/header';
 import RandomPlanet from '../random-planet/random-planet';
 import ItemList from '../item-list/item-list';
 import PersonDetails from '../person-details/person-details';
+import ErrorIndicator from "../error-indicator/error-indicator";
+import PeoplePage from "../people-page/people-page";
 
 
 
@@ -11,7 +13,6 @@ export default class App extends Component {
 
   state = {
     showRandomPlanet : true,
-    selectedPerson: 5
   };
 
   toggleRandomPlanet = () => {
@@ -22,14 +23,10 @@ export default class App extends Component {
     });  
   };
 
-  onPersonSelected = (id) => {
-   this.setState({
-     selectedPerson: id
-   });
-  }
-
+  
 render () {
 
+  
   const planet = this.state.showRandomPlanet ? <RandomPlanet/> : null;
 
   return(
@@ -43,15 +40,7 @@ render () {
             onClick={this.toggleRandomPlanet}>
             Toggle Random Planet
         </button>
-        <div className="row mb2">
-        <div className="col-md-6 g-3">
-          <ItemList onItemSelected = {this.onPersonSelected}/>
-        </div>
-        <div className="col-md-6 g-3 ">
-          <PersonDetails personId = {this.state.selectedPerson}/>
-        </div>
-        
-      </div>
+       <PeoplePage/>
     </div>
 )
 }

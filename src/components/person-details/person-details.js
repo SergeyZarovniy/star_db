@@ -41,7 +41,7 @@ if (!this.state.person) {
   return <span>Select person from list</span>;
 }
 
-const {id,name,gender,birthYear,eyeColor} = this.state.person;
+const {id,name,gender,birthYear,eyeColor,height} = this.state.person;
 
     return (
       <div className="person-details card">
@@ -49,7 +49,7 @@ const {id,name,gender,birthYear,eyeColor} = this.state.person;
           src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} />
 
         <div className="card-body">
-          <h4>{name}</h4>
+          <h4>{name} </h4>
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
               <span className="term">Gender :</span>
@@ -62,6 +62,10 @@ const {id,name,gender,birthYear,eyeColor} = this.state.person;
             <li className="list-group-item">
               <span className="term">Eye Color :</span>
               <span> {eyeColor} </span>
+            </li>
+            <li className="list-group-item">
+              <span className="term">Height :</span>
+              <span> {height} cm</span>
             </li>
           </ul>
         </div>
