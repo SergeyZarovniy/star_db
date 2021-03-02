@@ -7,10 +7,13 @@ import PersonDetails from '../person-details/person-details';
 import ErrorIndicator from "../error-indicator/error-indicator";
 import PeoplePage from "../people-page/people-page";
 import ErrorButton from "../error-button/error-button";
+import SwapiService from "../../services/swapi-service";
 
 
 
 export default class App extends Component {
+
+  swapiService = new SwapiService();
 
   state = {
     showRandomPlanet : true,
@@ -31,22 +34,36 @@ render () {
   const planet = this.state.showRandomPlanet ? <RandomPlanet/> : null;
 
   return(
-    <div className='stardb-app col-md-12 col-sm-3 '>
+    <div className='stardb-app col-md-12  col-sm-3 '>
         <Header/>
 
         {planet}
         <div className="row mb2 button-row">
         <button 
-            className="toggle-planet btn btn-warning btn-lg" 
+            className="toggle-planet btn btn-warning btn-lg " 
             onClick={this.toggleRandomPlanet}>
             Toggle Random Planet
         </button>
         <ErrorButton/>
     </div>
        <PeoplePage/>
-       <PeoplePage/>
-       <PeoplePage/>
+
+       <div className = "people-page">
+            <div className="row mb2">
+            <div className="col-md-6 g-3">
+              <ItemList 
+              onItemSelected = {this.onPersonSelected}
+              getData={this.swapiService.getAllPlanets} />
+            </div>
+            <div className="col-md-6 g-3 ">
+              <PersonDetails personId = {this.state.selectedPerson}/> 
+            </div>
+          </div>
+          
+          </div> 
+
     </div>
+    
 );
 }
 }
