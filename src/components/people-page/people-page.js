@@ -4,6 +4,9 @@ import ItemList from '../item-list/item-list';
 import PersonDetails from '../person-details/person-details';
 import ErrorIndicator from '../error-indicator/error-indicator';
 import SwapiService from '../../services/swapi-service';
+import Row from '../row/row';
+import ErrorBoundry from '../error-boundry/error-boundry';
+
 
 
 export default class PeoplePage extends Component {
@@ -11,17 +14,15 @@ export default class PeoplePage extends Component {
   swapiService = new SwapiService();
 
     state = {
-        selectedPerson: 1,
-        hasError:false
+        selectedPerson: 1
+        
     };
 
     onPersonSelected = (selectedPerson) => {
         this.setState({ selectedPerson });
       };
 
-    componentDidCatch () {
-        this.setState({hasError:true})
-    }  
+     
 
     render () {
 
@@ -30,27 +31,27 @@ export default class PeoplePage extends Component {
         }
 
         const itemList = (
-          <ItemList onItemSelected = {this.onPersonSelected}
-          getData={this.swapiService.getAllPeople}
-          renderItem = {({name,gender,birthYear}) => `${name} (${gender},${birthYear})`}/>
+          <ItemList
+          onItemSelected = {this.onPersonSelected}
+          getData={this.swapiService.getAllPeople}>
+          
+          {(i) => (
+            `${i.name} (${i.birthYear})`
+          )}
+          
+            </ItemList>
         );
 
         const personDetails = (
+          <ErrorBoundry>
          <PersonDetails personId = {this.state.selectedPerson}/> 
+         </ErrorBoundry>
         );
 
         return (
-            <div className = "people-page">
-            <div className="row mb2">
-            <div className="col-md-6 g-3">
-             {itemList}
-            </div>
-            <div className="col-md-6 g-3 ">
-              {personDetails}
-            </div>
-          </div>
-          
-          </div>
+          <ErrorBoundry>
+             <Row left={itemList} right={personDetails}/>
+          </ErrorBoundry>
         )
     }
 }
