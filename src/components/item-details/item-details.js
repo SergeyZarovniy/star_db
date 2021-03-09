@@ -5,6 +5,20 @@ import './item-details.css';
 import SwapiService from '../../services/swapi-service';
 import ErrorButton from '../error-button/error-button';
 
+
+const Record = ({item,field,label}) => {
+  return (
+           <li className="list-group-item">
+              <span className="term">{label}</span>
+              <span>{item[field]}</span>
+            </li>
+  );
+};
+export
+{
+  Record
+};
+
 export default class ItemDetails extends Component {
 
   swapiService = new SwapiService();
@@ -57,22 +71,11 @@ const {id,name,gender,birthYear,eyeColor,height} = item;
         <div className="card-body">
           <h4> {name} </h4>
           <ul className="list-group list-group-flush">
-            <li className="list-group-item">
-              <span className="term">Gender :</span>
-              <span>{gender}</span>
-            </li>
-            <li className="list-group-item">
-              <span className="term">Birth Year :</span>
-              <span>{birthYear}</span>
-            </li>
-            <li className="list-group-item">
-              <span className="term">Eye Color :</span>
-              <span> {eyeColor} </span>
-            </li>
-            <li className="list-group-item">
-              <span className="term">Height :</span>
-              <span> {height} cm</span>
-            </li>
+           {
+             React.Children.map(this.props.children, (child) => {
+               return React.cloneElement(child, {item} );
+             })
+           }
           </ul>
           <ErrorButton/>
         </div>

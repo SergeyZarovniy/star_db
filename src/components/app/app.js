@@ -3,13 +3,12 @@ import "./app.css";
 import Header from '../header/header';
 import RandomPlanet from '../random-planet/random-planet';
 import ItemList from '../item-list/item-list';
-import PersonDetails from '../item-details/item-details';
 import ErrorIndicator from "../error-indicator/error-indicator";
 import PeoplePage from "../people-page/people-page";
 import ErrorButton from "../error-button/error-button";
 import SwapiService from "../../services/swapi-service";
 import Row from "../row/row";
-import ItemDetails from "../item-details/item-details";
+import ItemDetails,{Record} from "../item-details/item-details";
 
 
 
@@ -41,16 +40,29 @@ render () {
          getStarshipImage} = this.swapiService;
 
   const personDetails = (
-    <ItemDetails itemId={5}
+    <ItemDetails 
+    itemId={5}
     getData = {getPerson}
-    getImageUrl={getPersonImage}
-    />
+    getImageUrl={getPersonImage}>
+
+    <Record field = "gender" label = "Gender :"/>
+    <Record field = "eyeColor" label = "Eye Color :"/>
+    <Record field = "birthYear" label = "Birth Year :"/>
+
+    </ItemDetails>
   );
+
   const starshipDetails = (
     <ItemDetails itemId={5}
     getData = {getStarship}
-    getImageUrl = {getStarshipImage}
-    />
+    getImageUrl = {getStarshipImage}>
+
+   <Record field = "crew" label = "Crew :"/>
+   <Record field = "length" label = "Starship length :"/>
+   <Record field = "costInCredits" label = "Cost :"/>
+
+    </ItemDetails>
+    
   );
 
   return(
