@@ -8,12 +8,14 @@ import ErrorIndicator from "../error-indicator/error-indicator";
 import PeoplePage from "../people-page/people-page";
 import ErrorButton from "../error-button/error-button";
 import SwapiService from "../../services/swapi-service";
+import Row from "../row/row";
+import ItemDetails from "../item-details/item-details";
 
 
 
 export default class App extends Component {
 
-  swapiService = new SwapiService();
+  swapiService = new SwapiService ();
 
   state = {
     showRandomPlanet : true,
@@ -33,11 +35,32 @@ render () {
   
   const planet = this.state.showRandomPlanet ? <RandomPlanet/> : null;
 
+  const {getPerson,
+         getStarship,
+         getPersonImage,
+         getStarshipImage} = this.swapiService;
+
+  const personDetails = (
+    <ItemDetails itemId={5}
+    getData = {getPerson}
+    getImageUrl={getPersonImage}
+    />
+  );
+  const starshipDetails = (
+    <ItemDetails itemId={5}
+    getData = {getStarship}
+    getImageUrl = {getStarshipImage}
+    />
+  );
+
   return(
     <div className='stardb-app col-md-12  col-sm-3 '>
         <Header/>
 
-        {planet}
+        <Row left={personDetails} 
+             right={starshipDetails}/>
+
+        {/* {planet}
         <div className="row mb2 button-row">
         <button 
             className="toggle-planet btn btn-warning btn-lg " 
@@ -46,7 +69,7 @@ render () {
         </button>
         <ErrorButton/>
     </div>
-       <PeoplePage/>
+       <PeoplePage/> */}
 
     </div>
     
